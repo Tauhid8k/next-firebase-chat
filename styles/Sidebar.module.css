@@ -1,0 +1,44 @@
+.sidebar {
+  background-color: white;
+  z-index: 10;
+  position: relative;
+  transition: 0.4s;
+}
+
+.sidebarBtn {
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 50px;
+  background-color: teal;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 5px 0 #777;
+  display: none;
+}
+.sidebarBtn::selection {
+  user-select: none;
+}
+
+.show {
+  left: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+    left: -300px;
+    box-shadow: 0 0 5px 0 #ddd;
+  }
+
+  .sidebarBtn {
+    display: block;
+  }
+}
