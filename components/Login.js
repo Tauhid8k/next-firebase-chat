@@ -1,9 +1,13 @@
-import { Button } from "@chakra-ui/react";
-import { FaGoogle } from "react-icons/fa";
 import Head from "next/head";
 import LoginStyles from "../styles/Login.module.css";
+import { Button } from "@chakra-ui/react";
+import { FaGoogle } from "react-icons/fa";
+import { auth } from "../config/firebase";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 const Login = () => {
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
   return (
     <>
       <Head>
@@ -17,6 +21,7 @@ const Login = () => {
             variant="solid"
             size="lg"
             boxShadow="lg"
+            onClick={() => signInWithGoogle()}
           >
             Sign In With Google
           </Button>

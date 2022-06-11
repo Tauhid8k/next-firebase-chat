@@ -1,9 +1,16 @@
-import Chat from "./chat/[id]";
+import Head from "next/head";
+import Sidebar from "../components/Sidebar";
+import { Box } from "@chakra-ui/react";
 
 const Home = () => {
   return (
     <>
-      <Chat />
+      <Head>
+        <title>Chat</title>
+      </Head>
+      <Box h="100vh">
+        <Sidebar />
+      </Box>
     </>
   );
 };

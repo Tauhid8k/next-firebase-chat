@@ -1,8 +1,10 @@
 import { Flex, Box, Avatar, IconButton, Button, Text } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
+import { useState } from "react";
+import { auth } from "../config/firebase";
+import { signOut } from "firebase/auth";
 import Contacts from "./Contacts";
 import SidebarStyles from "../styles/Sidebar.module.css";
-import { useState } from "react";
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -18,6 +20,7 @@ const Sidebar = () => {
   return (
     <Flex
       width="300px"
+      height="100%"
       borderEnd="1px solid"
       borderColor="gray.300"
       direction="column"
@@ -43,7 +46,12 @@ const Sidebar = () => {
           <Avatar />
           <Text fontWeight="medium">Tauhid8k</Text>
         </Flex>
-        <IconButton aria-label="hamburger" icon={<FiLogOut />} isRound />
+        <IconButton
+          aria-label="hamburger"
+          icon={<FiLogOut />}
+          isRound
+          onClick={() => signOut(auth)}
+        />
       </Flex>
 
       {/* Chat List */}
