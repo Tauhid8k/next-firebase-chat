@@ -1,6 +1,11 @@
 import { Flex, Text } from "@chakra-ui/react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../config/firebase";
+import { v4 as uuidv4 } from "uuid";
 
-const ChatContainer = () => {
+const ChatContainer = ({ messages }) => {
+  const [user] = useAuthState(auth);
+
   return (
     <Flex
       p="3"
@@ -10,25 +15,23 @@ const ChatContainer = () => {
       overflowX="scroll"
       sx={{ scrollbarWidth: "none" }}
     >
-      <Flex
-        width="fit-content"
-        py="2"
-        px="3"
-        bgColor="blue.100"
-        borderRadius="sm"
-      >
-        <Text>This is a Received Message</Text>
-      </Flex>
-      <Flex
-        width="fit-content"
-        py="2"
-        px="3"
-        bgColor="green.100"
-        borderRadius="sm"
-        alignSelf="flex-end"
-      >
-        <Text>This is a Sender Message</Text>
-      </Flex>
+      {messages?.map((msg, index) => {
+        const sender = msg.sender === user.email;
+
+        return (
+          <Flex
+            width="fit-content"
+            py="2"
+            px="3"
+            bgColor={sender ? "blue.100" : "green.100"}
+            borderRadius="sm"
+            key={uuidv4()}
+            alignSelf={sender ? "flex-start" : "flex-end"}
+          >
+            <Text>{msg.text}</Text>
+          </Flex>
+        );
+      })}
     </Flex>
   );
 };
