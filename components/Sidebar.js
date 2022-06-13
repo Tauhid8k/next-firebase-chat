@@ -80,7 +80,7 @@ const Sidebar = () => {
         p="2"
       >
         <Flex alignItems="center" gap="10px">
-          <Avatar src={user.photoURL} />
+          <Avatar src={user?.photoURL} />
           <Text fontWeight="medium">{user.displayName}</Text>
         </Flex>
         <IconButton

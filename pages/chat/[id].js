@@ -34,9 +34,9 @@ const Chat = () => {
       <Flex height="100vh">
         <Sidebar />
         <Flex flex="1" direction="column">
-          <TopBar email={getOtherUsers(chat?.users, user.email)} />
+          <TopBar email={getOtherUsers(chat?.users, user)} />
           <ChatContainer messages={messages} />
-          <ChatInput />
+          <ChatInput id={id} user={user} />
         </Flex>
       </Flex>
     </>
